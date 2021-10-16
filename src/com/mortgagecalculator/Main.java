@@ -14,16 +14,40 @@ public class Main {
         System.out.println("This is a mortgage calculator app");
         System.out.println("\nEnter the required values::");
 
-        System.out.print("Principal: ");
-        int principal = scanner.nextInt();
+        int principal;
 
-        System.out.print("Annual rate of Interest: ");
-        float rateOfInterest = scanner.nextFloat();
+        while (true) {
+            System.out.print("Principal ($1K - $1M): ");
+            principal = scanner.nextInt();
+
+            if (principal >= 1000 && principal <= 1_000_000)
+                break;
+            System.out.println("Enter a number between 1,000 and 1,000,000.");
+        }
+
+        float rateOfInterest;
+
+        while (true) {
+            System.out.print("Annual rate of Interest: ");
+            rateOfInterest = scanner.nextFloat();
+
+            if (rateOfInterest >= 1 && rateOfInterest <= 30)
+                break;
+            System.out.println("Enter a value greater than 0 and less than 30.");
+        }
         rateOfInterest /= PERCENT;
         float monthlyROI = rateOfInterest / MONTHS_IN_YEAR;
 
-        System.out.print("Period (Years): ");
-        int period = scanner.nextInt();
+        int period;
+
+        while (true) {
+            System.out.print("Period (Years): ");
+            period = scanner.nextInt();
+
+            if (period >= 1 && period <= 30)
+                break;
+            System.out.println("Enter a value between 1 and 30.");
+        }
         int numberOfPayments = period * MONTHS_IN_YEAR;
 
         double mortgage = principal
